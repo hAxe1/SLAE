@@ -32,7 +32,7 @@ if len(portInHex) < 4:
 
 if portInHex[0:2] == "00" or portInHex[2:4] == "00":
 	print "The port number contains 00 (null bytes) and won't work for shell code."
-	print "Currently, I'm to lazy to work around it, but maybe I will in a future revision."
+	print "Currently, I'm to lazy too work around it, but maybe I will in a future revision."
 	print "Please pick a different port."  #Time Permitting, I may look into adding a work around for null bytes
 	exit()                		       #I should also probably loop back and ask for user input again instead of exiting
 
