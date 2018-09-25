@@ -2,8 +2,9 @@
 ; Author:  Billy (@_hAxel)
 ; Website:  https://www.haxel.io
 ;
+;Student ID: PA-7462 
 ;
-; Purpose: 
+; Purpose: TCP Bind Shell using /bin/sh on port 4444
 
 global _start			
 
